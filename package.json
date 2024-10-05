@@ -1,11 +1,18 @@
 {
   "name": "turbowallet",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate":"turbo run db:generate --filter=@repo/db",
+    "build-user-app":"turbo run build --filter=@turbowallet/user-app",
+    "start-user-app":"turbo run start --filter=@turbowallet/user-app"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -15,11 +22,9 @@
   "engines": {
     "node": ">=18"
   },
+  
   "packageManager": "npm@10.8.3",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  
   "dependencies": {
     "@turbowallet/bank_webhook_handler": "*",
     "next": "^14.2.13"
